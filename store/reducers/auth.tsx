@@ -1,4 +1,4 @@
-import { AUTHENTICATE, SET_DID_TRY_AL } from "../actions/auth";
+import { AUTHENTICATE, SET_DID_TRY_AL, LOGOUT } from "../actions/auth";
 import { AuthState } from "..";
 
 const initialState: AuthState = {
@@ -19,6 +19,11 @@ export default (state = initialState, action): AuthState => {
     case SET_DID_TRY_AL:
       return {
         ...state,
+        didTryAutoLogin: true
+      };
+    case LOGOUT:
+      return {
+        ...initialState,
         didTryAutoLogin: true
       };
     default:

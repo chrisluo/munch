@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
-import { OverviewNavigator, AuthNavigator } from "./MunchNavigator";
+import { AuthNavigator, DrawerNavigator } from "./MunchNavigator";
 import RootState from "../store";
 import StartupScreen from "../screens/StartupScreen";
 
@@ -13,7 +13,7 @@ const AppNavigator = props => {
 
   return (
     <NavigationContainer>
-      {isAuth && <OverviewNavigator />}
+      {isAuth && <DrawerNavigator />}
       {!isAuth && didTryAutoLogin && <AuthNavigator />}
       {!isAuth && !didTryAutoLogin && <StartupScreen />}
     </NavigationContainer>
