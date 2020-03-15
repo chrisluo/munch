@@ -2,6 +2,7 @@ import firebase from "../../utils/firebase";
 import { AsyncStorage } from "react-native";
 
 export const AUTHENTICATE = "AUTHENTICATE";
+export const LOGOUT = "LOGOUT";
 export const SET_DID_TRY_AL = "SET_DID_TRY_AL";
 
 export const setDidTryAL = () => {
@@ -31,6 +32,13 @@ export const login = (email: string, password: string) => {
     } catch (error) {
       throw error;
     }
+  };
+};
+
+export const logout = () => {
+  AsyncStorage.removeItem("userData");
+  return {
+    type: LOGOUT
   };
 };
 
