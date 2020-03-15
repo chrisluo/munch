@@ -1,12 +1,13 @@
 import { AUTHENTICATE, SET_DID_TRY_AL } from "../actions/auth";
+import { AuthState } from "..";
 
-const initialState = {
+const initialState: AuthState = {
   token: null,
   userId: null,
   didTryAutoLogin: false
 };
 
-export default (state = initialState, action) => {
+export default (state = initialState, action): AuthState => {
   switch (action.type) {
     case AUTHENTICATE:
       return {

@@ -1,7 +1,9 @@
 export default interface RootState {
-  auth: {
-    token: string;
-    userId: string;
-    didTryAutoLogin: boolean;
-  };
+  auth: AuthState;
+}
+
+export interface AuthState {
+  token: string;
+  userId: string;
+  didTryAutoLogin: boolean;
 }
