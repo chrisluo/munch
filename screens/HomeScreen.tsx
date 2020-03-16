@@ -2,9 +2,14 @@ import React from "react";
 import { View, StyleSheet, Platform } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../components/UI/HeaderButton";
+import Map from "../components/Map";
 
 const HomeScreen = props => {
-  return <View style={styles.screen}></View>;
+  return (
+    <View style={styles.screen}>
+      <Map />
+    </View>
+  );
 };
 
 export const screenOptions = navData => {
@@ -28,9 +33,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center"
-  },
-  text: {
-    fontFamily: "lato"
   }
 });
 
