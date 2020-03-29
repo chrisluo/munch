@@ -3,14 +3,10 @@ import { StyleSheet, Alert } from "react-native";
 import * as Location from "expo-location";
 import * as Permissions from "expo-permissions";
 import MapView, { Marker } from "react-native-maps";
+import { BUISNESSES } from "../data/dummy-data";
 
 const Map = props => {
-  const [region, setRegion] = useState({
-    latitude: 37.78825,
-    longitude: -122.4324,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421
-  });
+  const [region, setRegion] = useState(null);
 
   const verifyPermissions = useCallback(async () => {
     const result = await Permissions.askAsync(Permissions.LOCATION);
@@ -59,9 +55,34 @@ const Map = props => {
     getLocationHandler();
   }, [verifyPermissions]);
 
+  const markerPressHandler = (event, location) => {
+    event.stopPropagation();
+    props.onLocation(location);
+  };
+
   return (
-    <MapView style={styles.mapStyle} region={region}>
-      <Marker coordinate={region} onPress={() => {}} />
+    <MapView
+      style={styles.mapStyle}
+      initialRegion={{
+        latitude: 37.78825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421
+      }}
+      region={region}
+      onPress={props.onRegionChange}
+      onRegionChangeComplete={props.onRegionChange}
+    >
+      {BUISNESSES.map(buisness => (
+        <Marker
+          key={buisness.id}
+          coordinate={{
+            latitude: buisness.lat,
+            longitude: buisness.lng
+          }}
+          onPress={event => markerPressHandler(event, buisness)}
+        />
+      ))}
     </MapView>
   );
 };
