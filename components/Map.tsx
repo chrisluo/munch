@@ -63,6 +63,7 @@ const Map = props => {
   return (
     <MapView
       style={styles.mapStyle}
+      moveOnMarkerPress={false}
       initialRegion={{
         latitude: 37.78825,
         longitude: -122.4324,
